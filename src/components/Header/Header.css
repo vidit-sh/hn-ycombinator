@@ -1,0 +1,31 @@
+header {
+  background-color: #f60;
+}
+
+header > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+header .logo {
+  margin: 8px 0 4px 20px;
+}
+
+header .logo img {
+  width: 24px;
+  height: 24px;
+  border: 1px white solid;
+}
+
+header nav {
+  margin-left: 20px;
+}
+
+header nav a {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+header .selected {
+  color: #fff;
+}

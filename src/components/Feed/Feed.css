@@ -1,0 +1,47 @@
+.feed td,
+.feed th {
+  vertical-align: bottom;
+  padding: 8px 4px;
+  font-size: 14px;
+}
+
+.feed th {
+  font-weight: inherit;
+}
+
+.feed td:nth-child(1),
+.feed td:nth-child(2),
+.feed td:nth-child(3) {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.feed th:nth-child(1),
+.feed td:nth-child(2) {
+  padding-left: 36px;
+}
+
+.feed td:nth-child(3) {
+  color: #828282;
+}
+
+.feed .feed-title {
+  font-size: 14px;
+}
+
+.feed td:nth-child(4) {
+  font-size: 10px;
+}
+
+.feed .greyed {
+  color: #828282;
+}
+
+.feed a.greyed:hover {
+  text-decoration: underline;
+}
+
+.feed button {
+  font-size: 10px;
+  padding: 0;
+}
