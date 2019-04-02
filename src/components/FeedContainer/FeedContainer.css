@@ -1,0 +1,23 @@
+table.feed-container {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.feed-container .feed:nth-child(even) {
+  background-color: #ececec;
+}
+
+table.feed-container .last-row {
+  color: #f60;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+table.feed-container .last-row p {
+  text-align: center;
+}
+
+.lds-ring {
+  position: relative;
+  left: 45%;
+}
