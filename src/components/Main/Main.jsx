@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+
 import Header from '../../components/Header'
 import FeedContainer from '../FeedContainer'
+import useHideStories from '../../helpers/hooks/useHideStories'
+import useUpvoteStories from '../../helpers/hooks/useUpvoteStories'
 
 function Main () {
-  const [hiddenStories, setHiddenStories] = useState({})
-  const [upvotes, setUpvotes] = useState({})
-
-  useEffect(() => {
-    const localHiddenStoriesValue = window.localStorage.getItem('hiddenStories')
-    setHiddenStories(
-      localHiddenStoriesValue ? JSON.parse(localHiddenStoriesValue) : {}
-    )
-
-    const localUpvotesValue = window.localStorage.getItem('upvotes')
-    setUpvotes(localUpvotesValue ? JSON.parse(localUpvotesValue) : {})
-  }, [])
-
-  const hideStory = story => {
-    setHiddenStories({ ...hiddenStories, [story]: true })
-    window.localStorage.setItem(
-      'hiddenStories',
-      JSON.stringify({ ...hiddenStories, [story]: true })
-    )
-  }
-
-  const upvoteStory = story => {
-    setUpvotes({ ...upvotes, [story]: true })
-    window.localStorage.setItem(
-      'upvotes',
-      JSON.stringify({ ...upvotes, [story]: true })
-    )
-  }
-
+  const [hiddenStories, hideStory] = useHideStories()
+  const [upvotes, upvoteStory] = useUpvoteStories()
   return (
     <>
       <Header />

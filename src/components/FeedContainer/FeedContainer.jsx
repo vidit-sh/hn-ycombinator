@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import './FeedContainer.css'
 import Feed from '../Feed'
-import { API_URLS } from '../../helpers/constants'
 import { withRoute, Link } from '../../helpers/router'
 import Spinner from '../Spinner'
+import useFetchStories from '../../helpers/hooks/useFetchStories'
 
 function FeedContainer ({
   currentRoute,
@@ -15,33 +15,7 @@ function FeedContainer ({
   upvotes,
   upvoteStory
 }) {
-  const [feeds, setFeeds] = useState(null)
-  const [maxPages, setMaxPages] = useState(0)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setLoading(true)
-    setFeeds(null)
-    const fetchData = async () => {
-      if (currentRoute) {
-        try {
-          const result = await fetch(
-            `${API_URLS[currentRoute]}${
-              queryParams.p ? '&page=' + queryParams.p : ''
-            }`
-          )
-          const data = await result.json()
-
-          setFeeds(data.hits)
-          setMaxPages(data.nbPages)
-        } catch (error) {
-          setFeeds([])
-        }
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [currentRoute, queryParams])
+  const [feeds, maxPages, loading] = useFetchStories(currentRoute, queryParams)
 
   const currentPageNumber = queryParams.p ? parseInt(queryParams.p) : 1
 
@@ -49,7 +23,7 @@ function FeedContainer ({
     <table className="feed-container">
       <tbody>
         {feeds &&
-          feeds.map((feed, index) => {
+          feeds.map(feed => {
             const key = `${feed.id || feed.story_id}${feed.author}${
               feed.created_at
             }${feed.objectID}`
@@ -96,7 +70,7 @@ function FeedContainer ({
 }
 
 FeedContainer.propTypes = {
-  currentRoute: PropTypes.string.isRequired,
+  currentRoute: PropTypes.string,
   queryParams: PropTypes.object.isRequired,
   hiddenStories: PropTypes.object.isRequired,
   hideStory: PropTypes.func.isRequired,
