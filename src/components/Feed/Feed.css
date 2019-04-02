@@ -16,9 +16,11 @@
   white-space: nowrap;
 }
 
-.feed th:nth-child(1),
-.feed td:nth-child(2) {
-  padding-left: 36px;
+@media only screen and (min-width: 48em) {
+  .feed th:nth-child(1),
+  .feed td:nth-child(2) {
+    padding-left: 36px;
+  }
 }
 
 .feed td:nth-child(3) {
